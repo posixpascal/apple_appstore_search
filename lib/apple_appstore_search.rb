@@ -1,0 +1,3 @@
+require 'apple_appstore_search/search'
+module AppleAppstoreSearch
+end
