@@ -8,35 +8,47 @@ module AppleAppstoreSearch
       @html = Nokogiri::HTML(content)
     end
 
-    def parse
-      create_app @html.css("#left-stack")
+    def fetch()
+      app = App.new
+      app.logo_url = get_logo_url
+      app.name = get_name
+      app.rating = get_rating
+      app.rates = get_rates
+      app.last_updated = get_last_updated
+      app.latest_changes = get_latest_changes
+      app.version = get_version
+      app.size = get_size
+
+      return app
     end
 
     private
-    def get_logo_url(app_content)
-      app_content.css("div.artwork img").attr("src-swap-high-dpi")
+    def get_logo_url()
+      @html.css(".we-artwork__image").attr("src")
     end
 
-    def get_name(app_content)
-      @html.css("#title .left h1").text
+    def get_name()
+      copy = @html.css(".product-header__title")
+      copy.search("span").remove()
+      copy.text.strip
     end
 
-    def get_rating(app_content)
+    def get_rating()
       rate = 0
-      rate += app_content.css(".rating-star:not(.ghost):not(.half)").size
-      rate += app_content.css(".rating-star.half").size / 2.0
+      rate += @html.css(".rating-star:not(.ghost):not(.half)").size
+      rate += @html.css(".rating-star.half").size / 2.0
       "#{rate}"
     end
 
-    def get_rates(app_content)
-      app_content.css(".rating-count").text.gsub(/\s(.+)/, "")
+    def get_rates()
+      @html.css(".rating-count").text.gsub(/\s(.+)/, "")
     end
 
-    def get_last_updated(app_content)
-      app_content.css(".release-date").first.text.gsub(/(.+):/, "")
+    def get_last_updated()
+      @html.css(".version-history__item__release-date").first.text.gsub(/(.+):/, "")
     end
 
-    def get_latest_changes(app_content)
+    def get_latest_changes()
       begin 
         @html.css(".product-review p")[1].to_html
       rescue 
@@ -44,26 +56,12 @@ module AppleAppstoreSearch
       end
     end
 
-    def get_version(app_content)
-      app_content.css(".list li")[3].text.gsub(/(.+):/, "")
+    def get_version()
+      @html.css(".version-history__item__version-number").first.text
     end
 
-    def get_size(app_content)
-       app_content.css(".list li")[4].text.gsub(/(.+):/, "")
-    end
-
-    def create_app(app_content)
-      app = App.new
-      app.logo_url = get_logo_url app_content
-      app.name = get_name app_content
-      app.rating = get_rating app_content
-      app.rates = get_rates app_content
-      app.last_updated = get_last_updated app_content
-      app.latest_changes = get_latest_changes app_content
-      app.version = get_version app_content
-      app.size = get_size app_content
-
-      return app
+    def get_size()
+      @html.css(".information-list__item__definition")[1].text
     end
   end
 end

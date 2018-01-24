@@ -15,12 +15,12 @@ module AppleAppstoreSearch
       url = build_url app_id, options
 
       app = AppleAppstoreSearch::AppParser.new(open(url).read())
-      return app.parse()
+      return app.fetch
     end
 
     private
     def build_url(app_id, options)
-      "https://itunes.apple.com/#{options[:lang]}/app/apple_appstore_search_gem/id#{app_id}?l=#{options[:lang]}&mt=8"
+      "https://itunes.apple.com/#{options[:lang]}/app/apple_appstore_search_gem/id#{app_id}?l=#{options[:lang]}&ls=1&mt=8"
     end
   end
 end

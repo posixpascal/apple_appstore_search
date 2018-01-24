@@ -4,7 +4,7 @@ How:
 ```ruby
 require 'apple_appstore_search'
 
-app = AppleAppstoreSearch.new()
+app = AppleAppstoreSearch::Search.new()
 ipa = app.search('<yourAppId>')
 ```
 
@@ -23,5 +23,3 @@ ipa.size => Your apps size
 ```
 
 I made this gem because I needed this functionality for a different project. It doesn't include all the details but I might add more if I need to. 
-
-Happy hacking.
