@@ -50,7 +50,7 @@ module AppleAppstoreSearch
 
     def get_latest_changes()
       begin 
-        @html.css(".product-review p")[1].to_html
+        @html.css(".l-row whats-new__content").css('.we-truncate__child').text()
       rescue 
         return "-"
       end
