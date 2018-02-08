@@ -3,9 +3,9 @@ Search your App's ID on Apple's App Store and retrieve all public data through a
 
 ## Usage:
 
-Be aware, this is a minefield. I use this in a very specific years and haven't touched the code in at least 3 years.
+Be aware, this is a minefield. I use this in a very specific legacy application and haven't touched the code in at least 3 years.
 
-I suggest to take a peak at [SpaceShip](https://github.com/fastlane/fastlane/tree/master/spaceship), which is definitely superior to this little pile of code. 
+I suggest you to take a peak at [SpaceShip](https://github.com/fastlane/fastlane/tree/master/spaceship), which is definitely superior to this little pile of code. 
 
 Anyways, you've been warned:
 
