@@ -20,7 +20,7 @@ module AppleAppstoreSearch
 
     private
     def build_url(app_id, options)
-      "https://itunes.apple.com/#{options[:lang]}/app/apple_appstore_search_gem/id#{app_id}?l=#{options[:lang]}&ls=1&mt=8"
+      "https://apps.apple.com/#{options[:lang]}/app/apple-appstore-search-gem/id#{app_id}?l=#{options[:lang]}&ls=1&mt=8"
     end
   end
 end
