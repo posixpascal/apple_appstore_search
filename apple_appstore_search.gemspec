@@ -1,7 +1,7 @@
 Gem::Specification.new do |s|
   s.name        = 'apple_appstore_search'
-  s.version     = '0.0.2'
-  s.date        = '2016-01-06'
+  s.version     = '0.0.3'
+  s.date        = '2019-10-24'
   s.summary     = "Search the AppStore for specific iOS apps"
   s.description = "Search the AppStore for specific iOS apps"
   s.authors     = ["Pascal Raszyk"]
